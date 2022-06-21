@@ -5,11 +5,14 @@ Rails.application.routes.draw do
   # root "articles#index"
   # /api/v1/authentications
   namespace :api, defaults: {format: :hash} do
+    get 'public', to: 'public#establish_connection'
+
     post '/auth/login', to: 'authentication#login'
+
     get '/categories', to: 'categories#index'
     get '/categories/:name', to: 'categories#show'
     post '/categories', to: 'categories#create'
-    # resources :articles
+
     post '/articles', to: 'articles#create'
     get '/articles/:slug', to: 'articles#show'
   end
